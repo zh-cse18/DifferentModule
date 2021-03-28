@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <!-- Page Content -->
+    <div class="container" style="min-height: 80vh;">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">Register
+            <small>Form</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Register</li>
+        </ol>
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <p> {{status}}</p>
+                <form method="post"  action="." novalidate>
+
+                    {% csrf_token %}
+                   <div class="control-group form-group">
+                        <div class="controls">
+                            <label>User Name*</label>
+                            <input type="text" class="form-control" name="user_name" required data-validation-required-message="Please enter your first name.">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>First Name*</label>
+                            <input type="text" class="form-control" name="f_name" required data-validation-required-message="Please enter your first name.">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label>Last Name*</label>
+                        <input type="text" class="form-control" name="l_name" required data-validation-required-message="Please enter your last name.">
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Email*</label>
+                            <input type="email" class="form-control" name="email" required data-validation-required-message="Please enter your email.">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Password*</label>
+                            <input type="password" class="form-control" name="password" required data-validation-required-message="Please enter your password.">
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Confirm Password*</label>
+                            <input type="password" class="form-control" name="confm-password" required data-validation-required-message="Please confirm your password.">
+                        </div>
+                    </div>
+                    <div id="success"></div>
+                    <!-- For success/fail messages -->
+                    <button type="submit" class="btn btn-primary" id="login-btn">Register</button>
+                </form>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+
+{% block content %}
+  <h2>Sign up</h2>
+
+{% for u in user %}
+
+  <h3> {{u.username}}</h3>
+  <h3> {{u.first_name}}</h3>
+  <h3> {{u.last_name}}</h3>
+  <h3> {{u.email}}</h3>
+  <h3> {{u.}}</h3>
+<hr>
+{% endfor %}
+<!--  <form method="post">-->
+<!--    {% csrf_token %}-->
+<!--    {% for field in form %}-->
+<!--      <p>-->
+<!--        {{ field.label_tag }}<br>-->
+<!--        {{ field }}-->
+<!--        {% if field.help_text %}-->
+<!--          <small style="color: grey">{{ field.help_text }}</small>-->
+<!--        {% endif %}-->
+<!--        {% for error in field.errors %}-->
+<!--          <p style="color: red">{{ error }}</p>-->
+<!--        {% endfor %}-->
+<!--      </p>-->
+<!--    {% endfor %}-->
+<!--    <button type="submit">Sign up</button>-->
+<!--  </form>-->
+<!--{% endblock %}-->
+
+    <!-- /.container -->
+{% endblock container %}
+
