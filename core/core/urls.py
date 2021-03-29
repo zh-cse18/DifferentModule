@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('restapi_app.urls')),
     path('post/', include('different_template_view_app.urls')),
-    path('', include('authentication_app.urls')),
+    path('auth/', include('authentication_app.urls')),
+    path('', include('qtec_app.urls')),
 ]

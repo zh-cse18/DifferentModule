@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <span id="success"></span>
+                <div  class="table-responsive">
+                    <table class="table table-centered mb-0 test " id="grouptable">
+                        <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Search Word</th>
+                            <th>Search Time</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for user_result in result %}
+
+                        <tr>
+                            <td> {{user_result.user_name}}</td>
+                            <td>  {{user_result.keyword}}</td>
+                            <td>  {{user_result.searched_at}}</td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div> <!-- end .table-responsive-->
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+</div> <!-- end row -->
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <span id="success"></span>
+                <div  class="table-responsive">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        {% for search_word in key %}
+                        <input type="checkbox" name={{search_word}} value={{search_word}}>
+                        <label for={search_word}}> {{search_word}}</label><br>
+                        {% endfor %}
+                        <input type="submit" value="Submit">
+
+                    </form>
+
+                </div> <!-- end .table-responsive-->
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+
+     <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <span id="success"></span>
+                <div  class="table-responsive">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        {% for user_name in name %}
+                        <input type="checkbox" name={{user_name}} value={{user_name}}>
+                        <label for={user_name}}> {{user_name}}</label><br>
+                        {% endfor %}
+                        <input type="submit" value="Submit">
+                    </form>
+
+                </div> <!-- end .table-responsive-->
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+
+</div> <!-- end row -->
+
+{% endblock container %}

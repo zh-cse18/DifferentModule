@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label >Search a word</label>
+                        <input type="text" name="search_text" class="form-control" required>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                    <li  class="nav-link" >
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </li>
+
+                    {% else %}
+                    <li  class="nav-link" >
+                        <a href="{% url 'login' %}">Login First</a>
+                    </li>
+                    {% endif %}
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock container %}

@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'different_template_view_app',
     'authentication_app',
-    'crispy_forms'
+    'crispy_forms',
+    'qtec_app'
 
 ]
 

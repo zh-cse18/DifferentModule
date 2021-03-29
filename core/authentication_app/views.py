@@ -11,7 +11,7 @@ def index(request):
 
 def user_login(request):
     if request.user.is_authenticated:
-        return redirect('posts')
+        return redirect('search')
     else:
         if request.method == 'POST':
             user = request.POST.get('user')
@@ -19,13 +19,13 @@ def user_login(request):
             auth = authenticate(request, username=user, password=password)
             if auth is not None:
                 login(request, auth)
-                return redirect('posts')
+                return redirect('search')
     return render(request, 'login.html', )
 
 
 def user_logout(request):
     logout(request)
-    return redirect('posts')
+    return redirect('search')
 
 
 def register(request):
@@ -37,7 +37,7 @@ def register(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('posts')
+            return redirect('search')
 
     else:
         form = SignUpForm()
