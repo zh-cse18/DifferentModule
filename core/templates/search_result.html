@@ -13,7 +13,6 @@
                             <th>User Name</th>
                             <th>Search Word</th>
                             <th>Search Time</th>
-
                         </tr>
                         </thead>
 
@@ -45,30 +44,34 @@
                     <form method="post" action="">
                         {% csrf_token %}
                         {% for search_word in key %}
-                        <input type="checkbox" name={{search_word}} value={{search_word}}>
+                        <input type="checkbox" name="select_word" value={{search_word}}>
                         <label for={search_word}}> {{search_word}}</label><br>
                         {% endfor %}
-                        <input type="submit" value="Submit">
+                        <hr>
 
-                    </form>
-
-                </div> <!-- end .table-responsive-->
-            </div> <!-- end card-body -->
-        </div> <!-- end card -->
-    </div> <!-- end col -->
-
-     <div class="col-6">
-        <div class="card">
-            <div class="card-body">
-                <span id="success"></span>
-                <div  class="table-responsive">
-                    <form method="post" action="">
-                        {% csrf_token %}
                         {% for user_name in name %}
-                        <input type="checkbox" name={{user_name}} value={{user_name}}>
+                        <input type="checkbox" name='select_user' value={{user_name}}>
                         <label for={user_name}}> {{user_name}}</label><br>
                         {% endfor %}
+                          <hr>
+
+                          <input type="checkbox" name="yesterday" value='yesterday'>
+                          <label for={yesterday}}> Yesterday</label><br>
+
+                          <input type="checkbox" name="lastweek" value='lastweek'>
+                          <label for={lastweek}}> Last Week</label><br>
+
+                        <div class="position-relative">
+                            <h4>Start Date</h4>
+                            <input type="date"  name = "start_date" value = {{start_date}} class="form-control"   >
+                            <br>
+                            <h4>End Date</h4>
+                            <input type="date" name="end_date"  value = {{end_date}} class="form-control"  >
+                            <br>
+
+                        </div>
                         <input type="submit" value="Submit">
+
                     </form>
 
                 </div> <!-- end .table-responsive-->
@@ -77,5 +80,14 @@
     </div> <!-- end col -->
 
 </div> <!-- end row -->
+
+{% for word,count in final_result.items %}
+<h4>{{word}} =
+    {% for i in count %}
+    {% if forloop.last %}
+    {{forloop.counter}}
+    {% endif %}
+    {% endfor %}  times</h4>
+{% endfor %}
 
 {% endblock container %}
