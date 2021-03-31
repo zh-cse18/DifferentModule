@@ -53,7 +53,9 @@ def search_result(request):
         if all_selected_word:
             for each_word in all_selected_word:
                 result_eachword = SearchResult.objects.filter(keyword=each_word)
-                final_result[each_word] = result_eachword
+                # final_result[each_word] = result_eachword
+                final_result[each_word] = len(result_eachword)
+                print(final_result)
 
         for unique_user in all_result:
             if unique_user.keyword not in key:

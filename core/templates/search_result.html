@@ -66,6 +66,7 @@
             <div class="card-body">
                 <span id="success"></span>
                 <div  class="table-responsive">
+                    {% if final_result %}
                     <table class="table table-centered mb-0 test " id="grouptable">
                         <thead>
                         <tr>
@@ -79,23 +80,12 @@
                         {% for word,count in final_result.items %}
                         <tr>
                             <td>  {{word}} </td>
-                            {% for i in count %}
-                            {% if forloop.last %}
-                            <td>{{forloop.counter}}
-
-                                {% if forloop.counter <= 1 %}
-                                time
-                                {% else %}
-                                times
-                                {% endif %}
-                                {% endif %}
-                            </td>
-                            {% endfor %}
-
+                            <td>  {{count}} </td>
                         </tr>
                         {% endfor %}
                         </tbody>
                     </table>
+                    {% endif %}
 
                 </div> <!-- end .table-responsive-->
             </div> <!-- end card-body -->
@@ -141,4 +131,16 @@
 
 
 
-{% endblock container %}
+<!--{% endblock container %}-->
+<!--{% for i in count %}-->
+<!--{% if forloop.last %}-->
+<!--<td>{{forloop.counter}}-->
+
+<!--    {% if forloop.counter <= 1 %}-->
+<!--    time-->
+<!--    {% else %}-->
+<!--    times-->
+<!--    {% endif %}-->
+<!--    {% endif %}-->
+<!--</td>-->
+<!--{% endfor %}-->
