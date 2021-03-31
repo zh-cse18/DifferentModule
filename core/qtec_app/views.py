@@ -24,7 +24,7 @@ def search_result(request):
     name = []
     key = []
     final_result = {}
-    result = SearchResult.objects.all()
+    all_result = SearchResult.objects.all()
     if request.method == 'POST':
         start_date = request.POST.get('start_date')
         end_date = request.POST.get('end_date')
@@ -55,8 +55,14 @@ def search_result(request):
                 result_eachword = SearchResult.objects.filter(keyword=each_word)
                 final_result[each_word] = result_eachword
 
+        for unique_user in all_result:
+            if unique_user.keyword not in key:
+                key.append(unique_user.keyword)
+            if unique_user.user_name not in name:
+                name.append(unique_user.user_name)
+
         context = {
-        'result': result,
+        'result': all_result,
         'key': key,
         'name': name,
         'final_result': final_result
@@ -64,14 +70,14 @@ def search_result(request):
         return render(request, 'search_result.html', context)
 
     else:
-        for unique_user in result:
+        for unique_user in all_result:
             if unique_user.keyword not in key:
                 key.append(unique_user.keyword)
             if unique_user.user_name not in name:
                 name.append(unique_user.user_name)
 
     context = {
-        'result': result,
+        'result': all_result,
         'key': key,
         'name': name,
         'final_result': final_result
