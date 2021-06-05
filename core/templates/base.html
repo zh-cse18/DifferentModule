@@ -16,6 +16,14 @@
     <!-- Custom styles for this template -->
     <link href="{% static  'css/modern-business.css' %}" rel="stylesheet">
 
+    <script src="{% static  'js/customjs.js'%}"></script>
+    <script src="{% static  'js/acustomjs.js'%}"></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="57051441058-4d7h836bkc9s06tu0h0bm4nteaa25en0.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/api.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
 </head>
 
 <body>
@@ -28,6 +36,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
             <ul class="navbar-nav ml-auto">
 <!--                <li class="nav-item">-->
 <!--                    <a class="nav-link" href="{% url 'posts' %}">Posts</a>-->
@@ -50,8 +60,12 @@
 
             </ul>
         </div>
+
+
+
     </div>
 </nav>
+
 
 {% block container %}
 {% endblock container %}
@@ -70,6 +84,7 @@
 
 <script src="{% static  'js/jqBootstrapValidation.js'%}"></script>
 <script src="{% static  'js/contact_me.js'%}"></script>
+
 
 </body>
 

@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'different_template_view_app',
     'authentication_app',
     'crispy_forms',
-    'qtec_app'
+    'qtec_app',
+    'posts'
 
 ]
 
@@ -123,7 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'),)
 
 import os
 LOGGING = {
@@ -138,7 +142,7 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'C:/Users/Zahid Hassan/Desktop/info.log',
+            'filename': 'logs/info.log',
         }
     }
 }

@@ -77,7 +77,7 @@ class Mobileinfo(APIView):
         data = MobileInfo.objects.all()
         data.delete()
         return Response(status=status.HTTP_200_OK)
-   # logging.info("some message")
+# logging.info("some message")
 
 
 class Mobileinfosingle(APIView):
