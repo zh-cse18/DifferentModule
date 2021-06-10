@@ -6,11 +6,9 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-
-
-
-def index(request):
-    return render(request, 'blog-listing.html')
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.template.loader import  render_to_string
 
 
 def user_login(request):
@@ -37,7 +35,17 @@ def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            current_site = get_current_site(request)
+            mail_subject = 'An account is created'
+            message = render_to_string('user_mail.html', {
+                'user': user,
+                'domain': current_site.domain
+            })
+            send_mail = form.cleaned_data.get('email')
+            email = EmailMessage(mail_subject, message, to=[send_mail])
+            email.send()
+            messages.success(request, "Send a mail")
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)

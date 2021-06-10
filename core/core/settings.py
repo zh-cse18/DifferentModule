@@ -147,17 +147,10 @@ LOGGING = {
     }
 }
 
-
-# LOGGING = {
-#       'version': 1,
-#       'loggers': {
-#         '': {
-#             'level': 'DEBUG',
-#             'handlers': ['console', 'file']
-#         },
-#         'django.request': {
-#             'level': 'DEBUG',
-#             'handlers': ['console', 'file']
-#         }
-#     }
-# }
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'zh.mobiletesting@gmail.com'
+EMAIL_HOST_PASSWORD = '100barloveu'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'OTF Team <zh.mobiletesting@gmail.com>'
