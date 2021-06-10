@@ -1,8 +1,12 @@
 from django.http import Http404, HttpResponse
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout,update_session_auth_hash
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
+from django.contrib import messages
+
+
 
 
 def index(request):
@@ -20,6 +24,7 @@ def user_login(request):
             if auth is not None:
                 login(request, auth)
                 return redirect('search')
+
     return render(request, 'login.html', )
 
 
@@ -44,4 +49,20 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            update = update_session_auth_hash(request, form.user)
+            if update:
+                messages.success(request, "Password Successfully changed")
+                logout(request)
+                return redirect('registration')
+            else:
+                messages.error(request, "Not updated")
+        else:
+            messages.error(request, "form not valid")
+    else:
+        form = PasswordChangeForm(user=request.user)
 
+    return render(request, 'change_password.html', {'form': form})
