@@ -22,9 +22,9 @@ from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('restapi_app.urls')),
-    path('post/', include('posts.urls')),
+    path('', include('posts.urls')),
     path('auth/', include('authentication_app.urls')),
-    path('', include('qtec_app.urls')),
+    path('qtec/', include('qtec_app.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_api'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
