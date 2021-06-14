@@ -1,5 +1,5 @@
 from django.http import Http404, HttpResponse
-from django.contrib.auth import login, authenticate, logout,update_session_auth_hash
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from django.contrib.auth.forms import PasswordChangeForm
@@ -9,7 +9,6 @@ from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-
 
 
 def user_login(request):
