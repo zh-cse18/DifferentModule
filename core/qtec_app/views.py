@@ -17,7 +17,7 @@ def search(request):
             return redirect('search')
     else:
         form = SearchResult()
-    return render(request, 'search.html', {'form': form})
+    return render(request, 'qtec/search.html', {'form': form})
 
 
 def search_result(request):
@@ -49,7 +49,7 @@ def search_result(request):
             result = SearchResult.objects.filter(searched_at__gte=start_date, searched_at__lte=end_date)
 
         all_selected_word = request.POST.getlist('select_word')
-        all_selected_user = request.POST.getlist('select_user')
+        all_selected_user = request.POST.getlist('select_user')  
         if all_selected_word:
             for each_word in all_selected_word:
                 result_eachword = SearchResult.objects.filter(keyword=each_word)
@@ -69,7 +69,7 @@ def search_result(request):
         'name': name,
         'final_result': final_result
         }
-        return render(request, 'search_result.html', context)
+        return render(request, 'qtec/search_result.html', context)
 
     else:
         for unique_user in all_result:
@@ -84,4 +84,4 @@ def search_result(request):
         'name': name,
         'final_result': final_result
     }
-    return render(request, 'search_result.html', context)
+    return render(request, 'qtec/search_result.html', context)
