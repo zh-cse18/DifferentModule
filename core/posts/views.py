@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from .models import AddProduct
 
 
-# POSTS VIEW ENDPOINT
 def posts(request):
-    return render(request, 'posts/blog-listing.html')
+    product_list = AddProduct.objects.all()
+    return render(request, 'posts/product-listing.html', {'all_product': product_list})
 
 
 # POST DETAILS VIEW ENDPOINT
