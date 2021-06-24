@@ -16,6 +16,7 @@ class AddProduct(models.Model):
     product_image = models.ImageField(upload_to='posts/images/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    file = models.FileField(default='zahid1.jpg', blank=True)
 
     def __str__(self):
         return self.product_name

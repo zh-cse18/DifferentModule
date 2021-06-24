@@ -1,55 +1,52 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block container %}
-  <!-- Page Content -->
-<!--  <div class="container">-->
+<head>
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Product Home</h1>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Product List</li>
-    </ol>
+    <title>Barcode Scanner</title>
 
-{% for product in all_product %}
-    <!-- BlogEnv Post -->
-    <div class="card mb-4">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-lg-6">
-            <a href="#">
-              <img class="img-fluid rounded" src="/media/{{product.product_image}}" alt=" product image">
-            </a>
+</head>
+
+<body>
+ <div class="row">
+      <div class="col-lg-4 mb-4">
+
+        <form  action="" novalidate method="post">
+          <div class="control-group form-group">
+               {% csrf_token %}
+            <div class="controls">
+              <label>Enter Barcode </label>
+              <input type="text" class="form-control" name ='barcode' id="email" required data-validation-required-message="Please enter your 12 digit barcode numberl.">
+              <p class="help-block"></p>
+            </div>
           </div>
-          <div class="col-lg-6">
-            <h2 class="card-title">{{product.product_category}}</h2>
-            <p class="card-text">{{product.product_desc}}</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-footer text-muted">
-        Posted on {{product.created_at}} by {{product.user.username}}
-        <a href="#">Start Bootstrap</a>
+          <!-- For success/fail messages -->
+          <button type="submit" class="btn btn-primary" id="login-btn">Search</button>
+        </form>
       </div>
     </div>
-{% endfor %}
+
+ <div class="row">
+     {% if all_product %}
+     {% for product in all_product %}
+     <h1>Name :{{user.username}}</h1>
+     <img src="/media/{{product.product_image.url}}" alt="Barcode">
+     <img src="/media/{{product.qr_code}}" alt="Barcode">
 
 
+     <hr/>
+     {% endfor %}
+     {% else %}
+     <h1> No matching data found</h1>
+     {% endif %}
+    </div>
 
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-      <li class="page-item">
-        <a class="page-link" href="#">&larr; Older</a>
-      </li>
-      <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-      </li>
-    </ul>
 
-<!--  </div>-->
-  <!-- /.container -->
-{% endblock container %}
+</body>
+
+</html>
